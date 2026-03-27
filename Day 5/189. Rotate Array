@@ -1,0 +1,18 @@
+class Solution {
+    public void rotate(int[] nums, int k) {
+        int n=nums.length;
+        k%=n;
+        rev(0,n-1,nums);
+        rev(0,k-1,nums);
+        rev(k,n-1,nums);
+    }
+    private void rev(int n,int k,int[] nums)
+    {
+        while(n<k)
+        {
+            int temp=nums[n];
+            nums[n++]=nums[k];
+            nums[k--]=temp;
+        }
+    }
+}
