@@ -1,0 +1,29 @@
+class Solution {
+    public int integerReplacement(int num) {
+        int c=0;
+        long n=num;
+        while(n!=1)
+        {
+        if(n%2==0)
+        {
+            n/=2;
+            
+        }
+        else
+        {
+            if(n%4==1 || n==3)
+            {
+                n=n-1;
+               
+            }
+            else
+            {
+                n=n+1;
+            }
+                
+        }
+        c++;
+        }
+        return c;
+    }
+}
