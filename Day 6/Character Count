@@ -1,0 +1,20 @@
+public class Main {
+    public static void main(String[] args) {
+        String str = "Hello123@#";
+
+        int l= 0, d= 0, s= 0;
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+
+            if (Character.isLetter(ch)) {
+                l++;
+            } else if (Character.isDigit(ch)) {
+                d++;
+            } else {
+                s++;
+            }
+        }
+        System.out.println("Letter: "+l+" Digit: "+d+" Special Character: "+s);
+    }
+}
