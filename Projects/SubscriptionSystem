@@ -1,0 +1,142 @@
+import java.util.*;
+
+
+class Plan {
+    private int id;
+    private String name;
+    private double price;
+
+    public Plan(int id, String name, double price) {
+        this.id = id;
+        this.name = name;
+        this.price = price;
+    }
+
+    public int getId() { return id; }
+    public String getName() { return name; }
+    public double getPrice() { return price; }
+
+    public void display() {
+        System.out.println(id + " - " + name + " - ₹" + price + "/month");
+    }
+}
+
+
+class User {
+    private String name;
+    private Plan currentPlan;
+
+    public User(String name) {
+        this.name = name;
+        this.currentPlan = null;
+    }
+
+   
+    public void subscribe(Plan plan) {
+        currentPlan = plan;
+        System.out.println("✅ Subscribed to " + plan.getName());
+    }
+
+
+    public void changePlan(Plan newPlan) {
+        if (currentPlan == null) {
+            System.out.println("❌ No existing plan. Please subscribe first.");
+        } else {
+            System.out.println("🔄 Plan changed from " + currentPlan.getName() +
+                               " to " + newPlan.getName());
+            currentPlan = newPlan;
+        }
+    }
+
+
+    public void showPlan() {
+        if (currentPlan == null) {
+            System.out.println("❌ No active subscription.");
+        } else {
+            System.out.println("📦 Current Plan: " + currentPlan.getName() +
+                               " (₹" + currentPlan.getPrice() + "/month)");
+        }
+    }
+
+    
+    public void calculateCost(int months) {
+        if (currentPlan == null) {
+            System.out.println("❌ No active plan.");
+        } else {
+            double total = currentPlan.getPrice() * months;
+            System.out.println("💰 Total cost for " + months +
+                               " months = ₹" + total);
+        }
+    }
+}
+
+
+public class SubscriptionSystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+       
+        Plan basic = new Plan(1, "Basic", 199);
+        Plan standard = new Plan(2, "Standard", 399);
+        Plan premium = new Plan(3, "Premium", 599);
+
+        User user = new User("Yuva");
+
+        while (true) {
+            System.out.println("\n1. View Plans");
+            System.out.println("2. Subscribe");
+            System.out.println("3. Change Plan");
+            System.out.println("4. Show Current Plan");
+            System.out.println("5. Calculate Cost");
+            System.out.println("6. Exit");
+
+            System.out.print("Enter choice: ");
+            int choice = sc.nextInt();
+
+            switch (choice) {
+                case 1:
+                    System.out.println("\n📋 Available Plans:");
+                    basic.display();
+                    standard.display();
+                    premium.display();
+                    break;
+
+                case 2:
+                    System.out.print("Enter Plan ID: ");
+                    int id = sc.nextInt();
+
+                    if (id == 1) user.subscribe(basic);
+                    else if (id == 2) user.subscribe(standard);
+                    else if (id == 3) user.subscribe(premium);
+                    else System.out.println("❌ Invalid Plan");
+                    break;
+
+                case 3:
+                    System.out.print("Enter New Plan ID: ");
+                    int newId = sc.nextInt();
+
+                    if (newId == 1) user.changePlan(basic);
+                    else if (newId == 2) user.changePlan(standard);
+                    else if (newId == 3) user.changePlan(premium);
+                    else System.out.println("❌ Invalid Plan");
+                    break;
+
+                case 4:
+                    user.showPlan();
+                    break;
+
+                case 5:
+                    System.out.print("Enter months: ");
+                    int months = sc.nextInt();
+                    user.calculateCost(months);
+                    break;
+
+                case 6:
+                    System.exit(0);
+
+                default:
+                    System.out.println("❌ Invalid choice");
+            }
+        }
+    }
+}
