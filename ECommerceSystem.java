@@ -1,6 +1,5 @@
 import java.util.*;
 
-// 🔹 Product Class (Encapsulation)
 class Product {
     private int id;
     private String name;
@@ -21,7 +20,7 @@ class Product {
     }
 }
 
-// 🔹 Cart Class (Uses HashMap)
+
 class Cart {
     private HashMap<Product, Integer> items = new HashMap<>();
 
@@ -51,7 +50,7 @@ class Cart {
     }
 }
 
-// 🔹 User Class (Inheritance Example)
+
 class User {
     protected String name;
 
@@ -64,7 +63,7 @@ class User {
     }
 }
 
-// 🔹 Customer Class (Inheritance)
+
 class Customer extends User {
     private Cart cart;
 
@@ -78,12 +77,12 @@ class Customer extends User {
     }
 }
 
-// 🔹 Main Class
+
 public class ECommerceSystem {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        // Product List (ArrayList)
+       
         ArrayList<Product> products = new ArrayList<>();
 
         products.add(new Product(1, "Laptop", 50000));
